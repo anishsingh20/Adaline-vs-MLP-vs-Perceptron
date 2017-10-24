@@ -25,8 +25,25 @@ iris.trainX<-iris.train[,1:4]
 iris.trainY<-iris.train[,5]
 iris.testY<-iris.test[,5]
 
+iris.trainY<-as.factor(iris.trainY)
+iris.testY<-as.factor(iris.testY)
+
+
+
+#converting to 1 hot encoding
+
+iris.trainYcat<-to_categorical(iris.trainY)
+iris.testYcat<-to_categorical(iris.testY)
 #making the architecture
 
 model<-keras_model_sequential()
 
+model %>% layer_dense(units=8,activation="relu",input_shape=c(4)) %>%
+          #output layer
+          layer_dense(units=3,activation = "softmax")
+
+model %>% compile(loss="categorical_crossentropy",
+               optimizer = "sgd",metrics="accuracy")
+
+history<- model %>% fit(iris.trainX,iris.trainYcat)
 

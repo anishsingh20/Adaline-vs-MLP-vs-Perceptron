@@ -52,7 +52,7 @@ history<- model %>% fit(iris.trainX,iris.trainYcat,epochs = 200,
 #loss of 0.21 and accuracy=0.9667
 
 #evaluating the MLP on test data
-pred.class<-predict_classes(model,iris.testX,batch_size=32,verbose=1)
+pred.class<-predict_classes(model,iris.testX,batch_size=2,verbose=1)
 head(pred.class)
 
 #confusion matrix
@@ -64,6 +64,7 @@ mean(iris.testY!=pred.class)
 score<-model %>% evaluate(iris.testX,iris.testYcat,batch_size = 2)
 score
 
+  
 
 
 plot(history)

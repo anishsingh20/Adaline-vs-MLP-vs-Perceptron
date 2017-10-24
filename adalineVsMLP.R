@@ -10,6 +10,11 @@ head(iris)
 nrow(iris)#150 rows
 dim(iris)
 
+#random sampling of data without replacement
 iris<-as.matrix(iris)
-iris.trainX<-iris[,1:4]
-iris.trainY<-iris[,5]
+iris.train<-sample(iris[,1:5],100,replace=F)
+iris.test<-sample(iris[,1:5],40,replace = F)
+
+
+iris.trainX<-iris[120,1:4]
+iris.trainY<-iris[30,5]

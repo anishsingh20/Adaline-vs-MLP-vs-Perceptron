@@ -40,10 +40,16 @@ model<-keras_model_sequential()
 
 model %>% layer_dense(units=8,activation="relu",input_shape=c(4)) %>%
           #output layer
-          layer_dense(units=3,activation = "softmax")
+          layer_dense(units=4,activation = "softmax")
 
 model %>% compile(loss="categorical_crossentropy",
                optimizer = "sgd",metrics="accuracy")
 
-history<- model %>% fit(iris.trainX,iris.trainYcat)
+summary(model)
+
+history<- model %>% fit(iris.trainX,iris.trainYcat,epochs = 200,
+                        batch_size = 32,verbose = 2)
+#loss of 0.21 and accuracy=0.9667
+
+plot(history)
 

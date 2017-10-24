@@ -51,5 +51,20 @@ history<- model %>% fit(iris.trainX,iris.trainYcat,epochs = 200,
                         batch_size = 32,verbose = 2)
 #loss of 0.21 and accuracy=0.9667
 
+#evaluating the MLP on test data
+pred.class<-predict_classes(model,iris.testX,batch_size=32,verbose=1)
+head(pred.class)
+
+#confusion matrix
+iris.testY<-unclass(iris.testY)
+table(actual=iris.testY,pred=pred.class)
+#misclassification error of 0.033 and accuracy of 0.9667 on test set
+mean(iris.testY!=pred.class)
+
+score<-model %>% evaluate(iris.testX,iris.testYcat,batch_size = 2)
+score
+
+
+
 plot(history)
 

@@ -25,4 +25,8 @@ iris.trainX<-iris.train[,1:4]
 iris.trainY<-iris.train[,5]
 iris.testY<-iris.test[,5]
 
+#making the architecture
+
+model<-keras_model_sequential()
+
 

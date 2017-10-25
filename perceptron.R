@@ -67,11 +67,24 @@ y[iris[, 5] == "virginica"] <- 1
 err<-perceptronNet(x,y,0.001,200)
 
 df<-as.data.frame(cbind(1:200,err))
+names(df)<-c("Epochs","Loss")
 
 
 #plotting epochs vs error value on training data set
-hchart(df,"line",hcaes(x=V1,y=err),color="red") %>%
+hchart(df,"line",hcaes(x=Epochs,y=Loss),color="red") %>%
   hc_title(text="Epochs Vs Error") %>%
   hc_add_theme(hc_theme_elementary()) 
 
 which.max(err)
+
+#making a comparative plot
+hc <- highchart() %>% 
+  hc_xAxis(categories=df$Epochs) %>% 
+  hc_add_series(name = "MLP", data = dfMLP$Loss) %>% 
+  hc_add_series(name = "perceptron", data = df$Loss) %>%
+  #to add colors
+  hc_colors(c("red","blue")) %>%
+  hc_add_theme(hc_theme_elementary()) %>%
+  
+
+hc

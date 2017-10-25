@@ -30,6 +30,10 @@ perceptronNet <- function(x,y,lr,epochs)
             y_out <- -1
           }
           
+          #updating weights if target value and fitted value is not same
+          weight_diff <- lr*(y[j]-y_out)*c(1,as.numeric(x[j,]))
+          new_weights <- (weight_diff +weight)
+          
         }
     
     }

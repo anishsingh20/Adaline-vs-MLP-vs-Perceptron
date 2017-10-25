@@ -2,4 +2,5 @@
 
 #Adaline - Stochastic Gradient Descent
 
-#making a function
+require(nnet)
+?nnet

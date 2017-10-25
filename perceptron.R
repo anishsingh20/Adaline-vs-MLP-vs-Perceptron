@@ -22,21 +22,20 @@ perceptronNet <- function(x,y,lr,epochs)
           
         {
           #sum of product of weights and inputs added with bias
-          z=sum( weight[2:length(weight)]*as.numeric(x[j,] ) ) + weight[1]#bias
-          
-          #applying activation function(unit step function)
-          if(z>0){
-            y_out<- 1
+          z=sum(weight[2:length(weight)] * 
+                as.numeric(x[j, ])) + weight[1]
+          if(z < 0) {
+            yout <- -1
           } else {
-            y_out <- -1
+            yout <- 1
           }
-          
           #updating weights if target value and fitted value is not same
-          weight_diff <- lr*(y[j]-y_out)*c(1,as.numeric(x[j,]))
-          new_weights <- (weight_diff + weight)
+          weight_diff <- lr * (y[j] - yout) * 
+            c(1, as.numeric(x[j, ]))
+          weight <- weight + weight_diff
           
-          #updating error function
-          if(( y[j]!= y_out)) {
+          #updating error function,if error is not 0
+          if(( y[j] - yout) != 0.0) {
             errors[i]<- errors[i] + 1
           }
           
@@ -48,7 +47,28 @@ perceptronNet <- function(x,y,lr,epochs)
   
   
     print(weight)
-    print(errors)
+    return(errors)
     
 
 }
+
+#let's train the algorithm to predict the classes
+
+# making training data
+x <- iris[, 1:4] 
+names(x) <- tolower(names(x))
+
+# create species labels
+y <- rep(-1, dim(x)[1])
+y[iris[, 5] == "virginica"] <- 1
+
+
+
+err<-perceptronNet(x,y,1,200)
+
+df<-cbind(1:200,err)
+
+plot(1:200, err, type="l", lwd=2, col="red", xlab="epoch #", ylab="errors")
+
+
+which.max(err)

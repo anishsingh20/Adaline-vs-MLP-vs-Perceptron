@@ -64,11 +64,14 @@ y[iris[, 5] == "virginica"] <- 1
 
 
 
-err<-perceptronNet(x,y,1,200)
+err<-perceptronNet(x,y,0.001,200)
 
-df<-cbind(1:200,err)
+df<-as.data.frame(cbind(1:200,err))
 
-plot(1:200, err, type="l", lwd=2, col="red", xlab="epoch #", ylab="errors")
 
+#plotting epochs vs error value on training data set
+hchart(df,"line",hcaes(x=V1,y=err),color="red") %>%
+  hc_title(text="Epochs Vs Error") %>%
+  hc_add_theme(hc_theme_elementary()) 
 
 which.max(err)

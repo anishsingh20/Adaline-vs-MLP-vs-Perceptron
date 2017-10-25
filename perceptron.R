@@ -1,6 +1,7 @@
 #Perceptron rule algorithm to do multiclass classification on Iris dataset
 
-#making a function for implementing perceptron rule algorithm
+#making a function for implementing perceptron rule algorithm-It is a linear
+#classifier which uses a linear activation function.
 
 #function takes input as inputs,target vector, learning rate and epochs
 perceptronNet <- function(x,y,lr,epochs) 
@@ -32,7 +33,9 @@ perceptronNet <- function(x,y,lr,epochs)
           
           #updating weights if target value and fitted value is not same
           weight_diff <- lr*(y[j]-y_out)*c(1,as.numeric(x[j,]))
-          new_weights <- (weight_diff +weight)
+          new_weights <- (weight_diff + weight)
+          
+          
           
         }
     

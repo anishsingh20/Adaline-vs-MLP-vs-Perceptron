@@ -4,7 +4,8 @@
 
 #function takes input as inputs,target vector, learning rate and epochs
 perceptronNet <- function(x,y,lr,epochs) 
-{
+
+{ 
   #initializing weights vector
   weights<-rep(0,dim(x)[2]+1) # a vector of length 5.As we have 4 variables
   
@@ -12,4 +13,17 @@ perceptronNet <- function(x,y,lr,epochs)
   errors<-rep(0,epochs)
   
   
+  #looping over number of epochs
+  for(i in 1:epochs)
+    {
+       #looping through entire dataset
+        for(j in 1:length(y))
+          
+        {
+          
+        }
+    
+    }
+  
+
 }

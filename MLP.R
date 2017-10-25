@@ -75,6 +75,7 @@ mean(iris.testY!=pred.class)
 
 score<-model %>% evaluate(iris.testX,iris.testYcat,batch_size = 2)
 score
+#error of 0.23 and accuracy of 0.96 on test set
 
   
 

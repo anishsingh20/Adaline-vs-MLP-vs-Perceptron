@@ -55,12 +55,12 @@ perceptronNet <- function(x,y,lr,epochs)
 #let's train the algorithm to predict the classes
 
 # making training data
-x <- iris[, 1:4] 
+x <- iris.trainX 
 names(x) <- tolower(names(x))
 
 # create species labels
 y <- rep(-1, dim(x)[1])
-y[iris[, 5] == "virginica"] <- 1
+y[iris.trainY == "virginica"] <- 1
 
 
 
@@ -72,19 +72,21 @@ names(df)<-c("Epochs","Loss")
 
 #plotting epochs vs error value on training data set
 hchart(df,"line",hcaes(x=Epochs,y=Loss),color="red") %>%
-  hc_title(text="Epochs Vs Error") %>%
+  hc_title(text="Line plot for Epochs Vs Error") %>%
   hc_add_theme(hc_theme_elementary()) 
 
-which.max(err)
+which.min(err) #error minimum for 118 epoch
 
 #making a comparative plot
 hc <- highchart() %>% 
   hc_xAxis(categories=df$Epochs) %>% 
-  hc_add_series(name = "MLP", data = dfMLP$Loss) %>% 
-  hc_add_series(name = "perceptron", data = df$Loss) %>%
+  hc_add_series(name = "Multi-layer Perceptron", data = dfMLP$Loss) %>% 
+  hc_add_series(name = "Linear perceptron Network", data = df$Loss) %>%
   #to add colors
-  hc_colors(c("red","blue")) %>%
+  hc_colors(c("#BF0E95","#119D93")) %>%
   hc_add_theme(hc_theme_elementary()) %>%
-  
+  hc_title(text="Comparative plot between MLP and perceptron network on IRIS dataset",align="center") %>%
+  hc_subtitle(text="Epochs vs Loss",align="center")
 
 hc
+

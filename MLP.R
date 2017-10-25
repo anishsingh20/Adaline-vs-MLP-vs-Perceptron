@@ -51,8 +51,8 @@ history<- model %>% fit(iris.trainX,iris.trainYcat,epochs = 200,
                         batch_size = 32,verbose = 2)
 #loss of 0.21 and accuracy=0.9667
 
-dfMLP<-as.data.frame(cbind(1:200,history$metrics$loss,history$metrics$acc))
-names(dfMLP)<-c("Epochs","Loss","accuracy")
+dfMLP<-as.data.frame(cbind(1:200,history$metrics$loss*10))
+names(dfMLP)<-c("Epochs","Loss")
 
 #plotting the model metrics
 hchart(dfMLP,hcaes(x=Epochs,y=Loss),color="violet",type="line") %>%

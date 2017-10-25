@@ -5,12 +5,12 @@
 require(nnet)
 ?nnet
 
-#training data for multiple Adaline network-MADALINE
+#training data for adaline network
 trainAda<-cbind(iris.trainX,iris.trainY)
 
 adaline <- nnet(iris.trainY ~ ., data = trainAda,
-                size = 8, rang = 0.1,
-               decay = 5e-4, maxit = 200)
+                size = 1, rang = 0.1,
+                maxit = 200,trace=TRUE)
 
 #picking out the weights
 adaline$wts
@@ -21,5 +21,12 @@ adaline$softmax
 adaline$convergence
 adaline$fitted.values
 adaline$residuals
+
+pred=predict(adaline,newdata=iris.testX,type="class")
 #predicting on test set
-table(ird$species[-samp], predict(ir.nn2, ird[-samp,], type = "class"))
+#confusion matrix
+table(actual=iris.testY, predicted=pred)
+mean(iris.testY==pred)
+#hence adaline network with 1 hidden unit is also achieving same accuracy as
+#that of MLP
+

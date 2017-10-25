@@ -30,3 +30,4 @@ mean(iris.testY==pred)
 #hence adaline network with 1 hidden unit is also achieving same accuracy as
 #that of MLP
 
+

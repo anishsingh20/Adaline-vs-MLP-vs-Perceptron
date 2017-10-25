@@ -62,9 +62,10 @@ names(x) <- tolower(names(x))
 y <- rep(-1, dim(x)[1])
 y[iris.trainY == "virginica"] <- 1
 
-
-
 err<-perceptronNet(x,y,0.001,200)
+
+
+
 
 df<-as.data.frame(cbind(1:200,err))
 names(df)<-c("Epochs","Loss")

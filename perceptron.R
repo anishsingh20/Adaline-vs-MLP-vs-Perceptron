@@ -35,11 +35,20 @@ perceptronNet <- function(x,y,lr,epochs)
           weight_diff <- lr*(y[j]-y_out)*c(1,as.numeric(x[j,]))
           new_weights <- (weight_diff + weight)
           
+          #updating error function
+          if(( y[j]!= y_out)) {
+            errors[i]<- errors[i] + 1
+          }
           
           
-        }
+          
+        }#end loop j
     
-    }
+    }#end loop i
   
+  
+    print(weight)
+    print(errors)
+    
 
 }
